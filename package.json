@@ -2,8 +2,8 @@
 	"name": "theme-ocean",
 	"displayName": "Ocean Theme",
 	"description": "",
-	"version": "0.0.1",
-	"publisher": "langwenda",
+	"version": "0.0.2",
+	"publisher": "alanlang",
 	"license": "MIT",
 	"homepage": "https://github.com/AlanLang/vscode-theme-ocean",
 	"repository": {
