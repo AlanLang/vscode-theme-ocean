@@ -2,7 +2,7 @@
 	"name": "theme-ocean",
 	"displayName": "Ocean Theme",
 	"description": "一款基于Boxy Nova风格的 vacode 主题",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"publisher": "alanlang",
 	"license": "MIT",
 	"homepage": "https://github.com/AlanLang/vscode-theme-ocean",

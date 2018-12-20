@@ -26,6 +26,9 @@
 		"editorGroupHeader.tabsBackground": "#42525a", //选项卡条背景色
 		"editorHoverWidget.background": "#004052",
 		"menu.background": "#343d46",
+		"editorWidget.background":"#42525a",// 查询等弹窗背景色
+		"editorWidget.border":"#42525a",// 查询等弹窗边框色
+		"input.background":"#343d46"
 	},
 	"tokenColors": [
 		{
