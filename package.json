@@ -1,17 +1,18 @@
 {
 	"name": "theme-ocean",
 	"displayName": "Ocean Theme",
-	"description": "",
+	"description": "一款基于Boxy Nova风格的 vacode 主题",
 	"version": "0.0.3",
 	"publisher": "alanlang",
 	"license": "MIT",
 	"homepage": "https://github.com/AlanLang/vscode-theme-ocean",
 	"repository": {
 		"type": "git",
-		"url": "htthttps://github.com/AlanLang/vscode-theme-ocean"
+		"url": "https://github.com/AlanLang/vscode-theme-ocean"
 	},
 	"scripts": {
-		"vsce-publish": "echo please run 'vsce publish'"
+		"vsce-publish": "echo please run 'vsce publish'",
+		"build": "vsce package"
 	},
 	"engines": {
 		"vscode": "^1.12.0"
