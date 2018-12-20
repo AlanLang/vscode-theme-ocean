@@ -1,0 +1,36 @@
+{
+	"name": "theme-ocean",
+	"displayName": "Ocean Theme",
+	"description": "",
+	"version": "0.0.1",
+	"publisher": "langwenda",
+	"license": "MIT",
+	"homepage": "https://github.com/AlanLang/vscode-theme-ocean",
+	"repository": {
+		"type": "git",
+		"url": "htthttps://github.com/AlanLang/vscode-theme-ocean"
+	},
+	"scripts": {
+		"vsce-publish": "echo please run 'vsce publish'"
+	},
+	"engines": {
+		"vscode": "^1.12.0"
+	},
+	"categories": [
+		"Themes"
+	],
+	"icon": "icon.png",
+	"contributes": {
+		"themes": [
+			{
+				"label": "Ocean",
+				"uiTheme": "vs-dark",
+				"path": "./themes/ocean.json"
+			}
+		]
+	},
+	"__metadata": {
+		"id": "6cd30b49-437a-4779-92d1-126c305a9b0f",
+		"publisherDisplayName": "Alan"
+	}
+}
