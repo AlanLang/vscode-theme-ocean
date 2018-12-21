@@ -1,5 +1,5 @@
 # vscode-theme-ocean
-🎨一款基于Boxy Nova风格的 vacode 主题
+🎨 an ocean style theme of vscode
 
 Vscode Market: https://marketplace.visualstudio.com/items?itemName=alanlang.theme-ocean#review-details
 
