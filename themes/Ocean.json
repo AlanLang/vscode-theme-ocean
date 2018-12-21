@@ -11,12 +11,11 @@
 		"editorIndentGuide.background": "#ffffff25",
 		"statusBar.background": "#42525a",
 		"statusBar.noFolderBackground": "#334466",
-		"activityBar.background": "#17242b",
+		"activityBar.background": "#42525a", //活动栏背景色
 		"activityBar.foreground": "#99dc9e",
 		"activityBarBadge.background": "#17242b",
 		"sideBar.background": "#42525a", //侧边栏背景色
 		"sideBar.border":"#42525a", //侧边栏边框色
-		"sideBarSectionHeader.border":"#42525a",
 		"list.activeSelectionBackground": "#4a5961",// 侧边栏选中背景色
 		"list.inactiveSelectionBackground": "#4a5961",
 		"list.hoverBackground": "#4a5961", // 侧边栏鼠标悬浮背景色
