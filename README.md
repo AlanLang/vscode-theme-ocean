@@ -10,5 +10,5 @@ GitHub: https://github.com/AlanLang/vscode-theme-ocean
 1. 打开`vscode`插件管理
 2. 搜索 `Ocean Theme`
 3. 下载安装
-## 效果
+## 预览
 ![](images/ocean-preview.png)
