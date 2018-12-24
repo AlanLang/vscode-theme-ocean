@@ -46,6 +46,17 @@ function deleteFoundLogStatements(workspaceEdit, docUri, logs) {
     });
 }
 
+function getFileNameWithoutExtension(path) {
+    let parts = path.split(".");
+    parts.pop();
+    if (parts.length > 1) {
+      if (parts[parts.length - 1] === "spec") {
+        parts.pop();
+      }
+    }
+    return parts.join(".");
+  }
+
 function activate(context) {
     console.log('console-log-utils is now active');
 
@@ -82,6 +93,22 @@ function activate(context) {
         deleteFoundLogStatements(workspaceEdit, document.uri, logStatements);
     });
     context.subscriptions.push(deleteAllLogStatements);
+
+    const switchFile = vscode.commands.registerCommand('extension.switchFile',()=>{
+        if (!vscode.workspace) {
+            return;
+        }
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) { 
+            vscode.window.showInformationMessage('没有可切换的文件！');
+            return; 
+        }
+        //TODO 读取该目录下的文件或文件夹
+        const currentFile = getFileNameWithoutExtension(editor.document.fileName);
+        vscode.window.showInformationMessage(currentFile);
+    })
+    context.subscriptions.push(switchFile);
+    
 }
 exports.activate = activate;
 

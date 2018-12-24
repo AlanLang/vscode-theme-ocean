@@ -22,7 +22,8 @@
 	],
 	"activationEvents": [
 		"onCommand:extension.insertLogStatement",
-		"onCommand:extension.deleteAllLogStatements"
+		"onCommand:extension.deleteAllLogStatements",
+		"onCommand:extension.switchFile"
 	],
 	"main": "./extension",
 	"icon": "icon.png",
@@ -42,7 +43,11 @@
 			{
 					"command": "extension.deleteAllLogStatements",
 					"title": "Delete all console.log statements"
-			}
+			},
+			{
+        "command": "extension.switchFile",
+				"title": "switch file 切换文件"
+     }
 		],
 		"keybindings": [
 				{
@@ -55,6 +60,11 @@
 						"command": "extension.deleteAllLogStatements",
 						"key": "shift+ctrl+d",
 						"mac": "shift+cmd+d"
+				},
+				{
+						"command": "extension.switchFile",
+						"key": "shift+ctrl+w",
+						"mac": "shift+cmd+w"
 				}
 		]
 	},
