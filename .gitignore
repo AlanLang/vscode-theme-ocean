@@ -1,1 +1,4 @@
 *.vsix
+*.log
+# dependencies
+/node_modules

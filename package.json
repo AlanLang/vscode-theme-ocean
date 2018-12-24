@@ -2,7 +2,7 @@
 	"name": "theme-ocean",
 	"displayName": "Ocean Theme",
 	"description": "🎨 an ocean style theme of vscode",
-	"version": "0.0.5",
+	"version": "0.1.0",
 	"publisher": "alanlang",
 	"license": "MIT",
 	"homepage": "https://github.com/AlanLang/vscode-theme-ocean",
@@ -20,6 +20,11 @@
 	"categories": [
 		"Themes"
 	],
+	"activationEvents": [
+		"onCommand:extension.insertLogStatement",
+		"onCommand:extension.deleteAllLogStatements"
+	],
+	"main": "./extension",
 	"icon": "icon.png",
 	"contributes": {
 		"themes": [
@@ -28,6 +33,29 @@
 				"uiTheme": "vs-dark",
 				"path": "./themes/ocean.json"
 			}
+		],
+		"commands": [
+			{
+					"command": "extension.insertLogStatement",
+					"title": "Insert Log Statement"
+			},
+			{
+					"command": "extension.deleteAllLogStatements",
+					"title": "Delete all console.log statements"
+			}
+		],
+		"keybindings": [
+				{
+						"command": "extension.insertLogStatement",
+						"key": "shift+ctrl+l",
+						"mac": "shift+cmd+l",
+						"when": "editorTextFocus"
+				},
+				{
+						"command": "extension.deleteAllLogStatements",
+						"key": "shift+ctrl+d",
+						"mac": "shift+cmd+d"
+				}
 		]
 	},
 	"__metadata": {

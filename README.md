@@ -12,3 +12,7 @@ GitHub: https://github.com/AlanLang/vscode-theme-ocean
 3. 下载安装
 ## 效果
 ![](images/ocean-preview.png)
+
+## 小工具
+* `shift+ctrl+l`: 快速插入log
+* `shift_ctrl+d`: 删除该页所有的log
