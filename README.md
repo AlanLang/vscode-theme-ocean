@@ -11,9 +11,18 @@ GitHub: https://github.com/AlanLang/vscode-theme-ocean
 2. 搜索 `Ocean Theme`
 3. 下载安装
 
-## 效果
-![](images/ocean-preview.png)
-
 ## 小工具
 * `shift+ctrl+l`: 快速插入log
-* `shift_ctrl+d`: 删除该页所有的log
+* `shift+ctrl+d`: 删除该页所有的log
+* `shift+ctrl+w`: 快速切换当前文件夹里面的其他文件
+
+## 效果展示
+
+#### 主题效果
+![](images/ocean-preview.png)
+
+#### 快速添加log
+![](images/quicklog.gif)
+
+#### 快速切换当前文件夹里面的其他文件
+![](images/switchfile.gif)
