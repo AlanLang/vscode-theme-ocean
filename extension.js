@@ -142,7 +142,9 @@ function activate(context) {
         aFile.pop();
         const filePath = aFile.join('\\')
         // 查找工作区下面的文件
-        vscode.workspace.findFiles('', '**/node_modules/**', 10).then(files=>{
+        const filter = new vscode.RelativePattern(filePath,'*');
+        vscode.workspace.findFiles(filter,'**/node_modules/**', 100)
+        .then(files=>{
             const showFiles = [];
             for(let file of files){
                 if(file.fsPath.startsWith(filePath) && file.fsPath != currentFile){
