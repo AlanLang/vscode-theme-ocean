@@ -46,16 +46,49 @@ function deleteFoundLogStatements(workspaceEdit, docUri, logs) {
     });
 }
 
-function getFileNameWithoutExtension(path) {
-    let parts = path.split(".");
-    parts.pop();
-    if (parts.length > 1) {
-      if (parts[parts.length - 1] === "spec") {
-        parts.pop();
-      }
-    }
-    return parts.join(".");
-  }
+function showOrOpenFile(path){
+    let opened = false;
+    return new Promise((resolve, reject) => {
+        let opened = false;
+        // vscode.workspace.textDocuments.forEach((doc) => {
+        // });
+    
+        // try to find opened document.
+        vscode.window.visibleTextEditors.forEach(textEditor => {
+          if (textEditor.document.fileName === path) {
+            opened = true;
+            vscode.window
+              .showTextDocument(textEditor.document, textEditor.viewColumn)
+              .then(
+                () => {
+                  resolve(textEditor.document);
+                },
+                err => {
+                  reject(err);
+                }
+              );
+          }
+        });
+    
+        if (!opened) {
+          vscode.workspace.openTextDocument(path).then(
+            doc => {
+              vscode.window.showTextDocument(doc, vscode.ViewColumn).then(
+                () => {
+                  resolve(doc);
+                },
+                err => {
+                  reject(err);
+                }
+              );
+            },
+            err => {
+              reject(err);
+            }
+          );
+        }
+      });
+}
 
 function activate(context) {
     console.log('console-log-utils is now active');
@@ -103,9 +136,31 @@ function activate(context) {
             vscode.window.showInformationMessage('没有可切换的文件！');
             return; 
         }
-        //TODO 读取该目录下的文件或文件夹
-        const currentFile = getFileNameWithoutExtension(editor.document.fileName);
-        vscode.window.showInformationMessage(currentFile);
+        // 当前文件
+        const currentFile = editor.document.fileName;
+        const aFile = currentFile.split('\\');
+        aFile.pop();
+        const filePath = aFile.join('\\')
+        // 查找工作区下面的文件
+        vscode.workspace.findFiles('', '**/node_modules/**', 10).then(files=>{
+            const showFiles = [];
+            for(let file of files){
+                if(file.fsPath.startsWith(filePath) && file.fsPath != currentFile){
+                    const fs = file.fsPath.split('\\');
+                    showFiles.push({
+                        label:fs[fs.length - 1],
+                        description:file.fsPath
+                    })
+                }
+            }
+            vscode.window.showQuickPick(showFiles)
+            .then(
+                command => showOrOpenFile(command.description).then(re=>{})
+            );
+            //vscode.window.showInformationMessage(files.fsPath)
+        })
+        //const currentFile = getFileNameWithoutExtension(editor.document.fileName);
+        //vscode.window.showInformationMessage(currentFile);
     })
     context.subscriptions.push(switchFile);
     
