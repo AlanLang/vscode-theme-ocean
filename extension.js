@@ -159,8 +159,6 @@ function activate(context) {
             );
             //vscode.window.showInformationMessage(files.fsPath)
         })
-        //const currentFile = getFileNameWithoutExtension(editor.document.fileName);
-        //vscode.window.showInformationMessage(currentFile);
     })
     context.subscriptions.push(switchFile);
     
