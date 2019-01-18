@@ -2,6 +2,7 @@
 ![](https://vsmarketplacebadge.apphb.com/version/alanlang.theme-ocean.svg) ![](https://vsmarketplacebadge.apphb.com/downloads/alanlang.theme-ocean.svg) ![](https://vsmarketplacebadge.apphb.com/rating-star/alanlang.theme-ocean.svg)
 
 🎨 an ocean style theme of vscode
+
 ![](icon.png)
 
 Vscode Market: https://marketplace.visualstudio.com/items?itemName=alanlang.theme-ocean#review-details
