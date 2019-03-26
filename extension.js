@@ -165,8 +165,8 @@ function activate(context) {
     })
 
     context.subscriptions.push(switchFile);
-
-    context.subscriptions.push(listTodo);
+    
+    context.subscriptions.push(listTodo(context.workspaceState));
     
 }
 exports.activate = activate;

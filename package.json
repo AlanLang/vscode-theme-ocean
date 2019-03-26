@@ -23,7 +23,8 @@
 	"activationEvents": [
 		"onCommand:extension.insertLogStatement",
 		"onCommand:extension.deleteAllLogStatements",
-		"onCommand:extension.switchFile"
+		"onCommand:extension.switchFile",
+		"onCommand:extension.listTodo"
 	],
 	"main": "./extension",
 	"icon": "icon.png",
