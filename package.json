@@ -47,7 +47,11 @@
 			{
         "command": "extension.switchFile",
 				"title": "switch file 切换文件"
-     }
+			},
+			{
+				"command": "extension.listTodo",
+				"title": "list todo"
+			}
 		],
 		"keybindings": [
 				{

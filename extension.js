@@ -1,4 +1,5 @@
 const vscode = require('vscode');
+const listTodo = require('./src/todo');
 
 const insertText = (val) => {
     const editor = vscode.window.activeTextEditor;
@@ -162,7 +163,10 @@ function activate(context) {
             //vscode.window.showInformationMessage(files.fsPath)
         })
     })
+
     context.subscriptions.push(switchFile);
+
+    context.subscriptions.push(listTodo);
     
 }
 exports.activate = activate;
