@@ -65,10 +65,12 @@ const COMMIT_VALUE = {
   breaking: '',
   footer: ''
 };
-
 const commitizen = vscode.commands.registerCommand('extension.commitizen', () => {
   vscode.window.showQuickPick(DEFAULT_TYPES, getOption(DEFAULT_MESSAGES.type))
   .then(command => {
+    if(!command) {
+      throw null;
+    }
     COMMIT_VALUE.type = command.label;
     const options = {
       placeHolder: DEFAULT_MESSAGES.scope,
@@ -76,6 +78,9 @@ const commitizen = vscode.commands.registerCommand('extension.commitizen', () =>
     };
     return vscode.window.showInputBox(options)
   }).then(command => {
+    if(!command) {
+      throw null;
+    }
     COMMIT_VALUE.scope = command;
     const options = {
       placeHolder: DEFAULT_MESSAGES.subject,
@@ -90,6 +95,9 @@ const commitizen = vscode.commands.registerCommand('extension.commitizen', () =>
     };
     return vscode.window.showInputBox(options)
   }).then(command => {
+    if(!command) {
+      throw null;
+    }
     COMMIT_VALUE.subject = command;
     const options = {
       placeHolder: DEFAULT_MESSAGES.body,
@@ -97,6 +105,9 @@ const commitizen = vscode.commands.registerCommand('extension.commitizen', () =>
     };
     return vscode.window.showInputBox(options)
   }).then(command => {
+    if(!command) {
+      throw null;
+    }
     COMMIT_VALUE.body = command;
     const options = {
       placeHolder: DEFAULT_MESSAGES.breaking,
@@ -104,6 +115,9 @@ const commitizen = vscode.commands.registerCommand('extension.commitizen', () =>
     };
     return vscode.window.showInputBox(options)
   }).then(command => {
+    if(!command) {
+      throw null;
+    }
     COMMIT_VALUE.breaking = command;
     const options = {
       placeHolder: DEFAULT_MESSAGES.footer,
