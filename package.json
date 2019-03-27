@@ -49,6 +49,10 @@
 			{
 				"command": "extension.listTodo",
 				"title": "list todo 列出待办事项"
+			},
+			{
+				"command": "extension.commitizen",
+				"title": "commitizen commit 代码提交"
 			}
 		],
 		"keybindings": [
