@@ -21,10 +21,7 @@
 		"Themes"
 	],
 	"activationEvents": [
-		"onCommand:extension.insertLogStatement",
-		"onCommand:extension.deleteAllLogStatements",
-		"onCommand:extension.switchFile",
-		"onCommand:extension.listTodo"
+		"*"
 	],
 	"main": "./extension",
 	"icon": "icon.png",
@@ -51,7 +48,7 @@
 			},
 			{
 				"command": "extension.listTodo",
-				"title": "list todo"
+				"title": "list todo 列出待办事项"
 			}
 		],
 		"keybindings": [

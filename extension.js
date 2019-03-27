@@ -1,4 +1,7 @@
 const vscode = require('vscode');
+const window = vscode.window;
+const util = require('./src/util');
+
 const listTodo = require('./src/todo');
 
 const insertText = (val) => {
@@ -92,6 +95,12 @@ function showOrOpenFile(path){
 }
 
 function activate(context) {
+    if (!window.statusBarItem) {
+      window.statusBarItem = util.createStatusBarItem();
+    }
+    if (!window.outputChannel) {
+        window.outputChannel = window.createOutputChannel('todoList');
+    }
     console.log('console-log-utils is now active');
 
     const insertLogStatement = vscode.commands.registerCommand('extension.insertLogStatement', () => {
@@ -167,6 +176,11 @@ function activate(context) {
     context.subscriptions.push(switchFile);
     
     context.subscriptions.push(listTodo(context.workspaceState));
+
+    context.subscriptions.push(vscode.commands.registerCommand('todoList.showTodo', function () {
+      var annotationList = context.workspaceState.get('annotationList', []);
+      util.showOutputChannel(annotationList);
+    }));
     
 }
 exports.activate = activate;

@@ -116,13 +116,22 @@ function errorHandler(err) {
 
 function setStatusMsg(icon, msg, tooltip) {
   if (window.statusBarItem) {
-      window.statusBarItem.text = `${icon} ${msg}` || '';
-      if (tooltip) {
-          window.statusBarItem.tooltip = tooltip;
-      }
-      window.statusBarItem.show();
+    window.statusBarItem.text = `${icon} ${msg}` || '';
+    if (tooltip) {
+        window.statusBarItem.tooltip = tooltip;
+    }
+    window.statusBarItem.show();
   }
 }
+
+function createStatusBarItem() {
+  var statusBarItem = window.createStatusBarItem(vscode.StatusBarAlignment.Left);
+  statusBarItem.text = defaultIcon + defaultMsg;
+  statusBarItem.tooltip = 'List todo';
+  statusBarItem.command = 'todoList.showTodo';
+  return statusBarItem;
+};
+
 function annotationsFound(err, annotations, annotationList) {
   if (err) {
       console.log('todohighlight err:', err);
@@ -137,8 +146,11 @@ function annotationsFound(err, annotations, annotationList) {
 }
 
 function showOutputChannel(data) {
-  if (!window.outputChannel) return;
-  window.outputChannel.clear();
+  if (!window.outputChannel) {
+    window.outputChannel = window.createOutputChannel('todoList');
+  }else{
+    window.outputChannel.clear();
+  };
 
   if (data.length === 0) {
       window.showInformationMessage('No results');
@@ -191,5 +203,7 @@ function getLocationInfo(fileInUri, pathWithoutFile, lineText, line, match) {
 };
 
 module.exports = {
-  searchAnnotations
+  searchAnnotations,
+  createStatusBarItem,
+  showOutputChannel
 }

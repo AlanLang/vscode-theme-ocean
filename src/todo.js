@@ -2,10 +2,9 @@ const vscode = require('vscode');
 const util = require('./util');
 
 // TODO: 123
-const listTodo = () => {
-  return vscode.commands.registerCommand('extension.listTodo', (workspaceState) => {
+const listTodo = (workspaceState) => {
+  return vscode.commands.registerCommand('extension.listTodo', () => {
     util.searchAnnotations(workspaceState);
-    console.log(123)
   })
 }
 
