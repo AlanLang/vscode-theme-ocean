@@ -17,6 +17,8 @@ GitHub: https://github.com/AlanLang/vscode-theme-ocean
 * `shift+ctrl+l`: 快速插入log
 * `shift+ctrl+d`: 删除该页所有的log
 * `shift+ctrl+w`: 快速切换当前文件夹里面的其他文件
+* `list todo`: 快速列出标有`TODO:`的代码行
+* `commitizen commit`: 以`commitizen`的格式提交代码
 
 ## 效果展示
 

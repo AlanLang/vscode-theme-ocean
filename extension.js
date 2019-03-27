@@ -6,6 +6,7 @@ const deleteAllLogStatements = require('./src/log/removeLog');
 const insertLogStatement = require('./src/log/insertLog');
 const listTodo = require('./src/todo');
 const switchFile = require('./src/switchFile');
+const commitizen = require('./src/commitizen');
 
 function activate(context) {
     if (!window.statusBarItem) {
@@ -26,7 +27,8 @@ function activate(context) {
       var annotationList = context.workspaceState.get('annotationList', []);
       util.showOutputChannel(annotationList);
     }));
-    
+
+    context.subscriptions.push(commitizen);
 }
 exports.activate = activate;
 
