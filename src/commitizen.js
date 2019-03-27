@@ -1,4 +1,5 @@
 const vscode = require('vscode');
+const execa = require('execa');
 
 const DEFAULT_TYPES = [
   {
@@ -68,7 +69,7 @@ const COMMIT_VALUE = {
 const commitizen = vscode.commands.registerCommand('extension.commitizen', () => {
   vscode.window.showQuickPick(DEFAULT_TYPES, getOption(DEFAULT_MESSAGES.type))
   .then(command => {
-    COMMIT_VALUE.type = command;
+    COMMIT_VALUE.type = command.label;
     const options = {
       placeHolder: DEFAULT_MESSAGES.scope,
       ignoreFocusOut: true
@@ -109,12 +110,38 @@ const commitizen = vscode.commands.registerCommand('extension.commitizen', () =>
       ignoreFocusOut: true
     };
     return vscode.window.showInputBox(options)
+
   }).then(command => {
     COMMIT_VALUE.footer = command;
-    const channel = vscode.window.createOutputChannel('commitizen');
-    channel.appendLine('Commitizen support started');
-    channel.appendLine(`About to commit `);
-    channel.show();
+    let message = COMMIT_VALUE.type;
+    const cwd = vscode.workspace.workspaceFolders[0].uri.fsPath;
+
+    if(COMMIT_VALUE.scope){
+      message += `(${COMMIT_VALUE.scope})`
+    }
+    message += `: ${COMMIT_VALUE.subject}`
+    if(COMMIT_VALUE.body){
+      message += `
+      ${COMMIT_VALUE.body}
+      `
+    }
+    if(COMMIT_VALUE.breaking){
+      message += `
+      BREAKING CHANGE: ${COMMIT_VALUE.breaking}
+      `
+    }
+    if(COMMIT_VALUE.footer){
+      message += `
+      Closes: ${COMMIT_VALUE.footer}
+      `
+    }
+
+    vscode.commands.executeCommand('git.stageAll').then(re => {
+      return execa('git', ['commit', '-m', message], {cwd})
+    })
+    .then(re => {
+      vscode.commands.executeCommand('git.refresh');
+    })
   })
 });
 

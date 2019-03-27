@@ -2,7 +2,7 @@
 	"name": "theme-ocean",
 	"displayName": "Ocean Theme",
 	"description": "🎨 an ocean style theme of vscode",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"publisher": "alanlang",
 	"license": "MIT",
 	"homepage": "https://github.com/AlanLang/vscode-theme-ocean",
@@ -35,15 +35,15 @@
 		],
 		"commands": [
 			{
-					"command": "extension.insertLogStatement",
-					"title": "Insert Log Statement"
+				"command": "extension.insertLogStatement",
+				"title": "Insert Log Statement"
 			},
 			{
-					"command": "extension.deleteAllLogStatements",
-					"title": "Delete all console.log statements"
+				"command": "extension.deleteAllLogStatements",
+				"title": "Delete all console.log statements"
 			},
 			{
-        "command": "extension.switchFile",
+				"command": "extension.switchFile",
 				"title": "switch file 切换文件"
 			},
 			{
@@ -56,26 +56,29 @@
 			}
 		],
 		"keybindings": [
-				{
-						"command": "extension.insertLogStatement",
-						"key": "shift+ctrl+l",
-						"mac": "shift+cmd+l",
-						"when": "editorTextFocus"
-				},
-				{
-						"command": "extension.deleteAllLogStatements",
-						"key": "shift+ctrl+d",
-						"mac": "shift+cmd+d"
-				},
-				{
-						"command": "extension.switchFile",
-						"key": "shift+ctrl+w",
-						"mac": "shift+cmd+w"
-				}
+			{
+				"command": "extension.insertLogStatement",
+				"key": "shift+ctrl+l",
+				"mac": "shift+cmd+l",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.deleteAllLogStatements",
+				"key": "shift+ctrl+d",
+				"mac": "shift+cmd+d"
+			},
+			{
+				"command": "extension.switchFile",
+				"key": "shift+ctrl+w",
+				"mac": "shift+cmd+w"
+			}
 		]
 	},
 	"__metadata": {
 		"id": "6cd30b49-437a-4779-92d1-126c305a9b0f",
 		"publisherDisplayName": "Alan"
+	},
+	"dependencies": {
+		"execa": "^1.0.0"
 	}
 }
