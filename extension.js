@@ -3,6 +3,7 @@ const window = vscode.window;
 const util = require('./src/util');
 
 const listTodo = require('./src/todo');
+const switchFile = require('./src/switchFile');
 
 const insertText = (val) => {
     const editor = vscode.window.activeTextEditor;
@@ -101,7 +102,6 @@ function activate(context) {
     if (!window.outputChannel) {
         window.outputChannel = window.createOutputChannel('todoList');
     }
-    console.log('console-log-utils is now active');
 
     const insertLogStatement = vscode.commands.registerCommand('extension.insertLogStatement', () => {
         const editor = vscode.window.activeTextEditor;
@@ -135,43 +135,8 @@ function activate(context) {
 
         deleteFoundLogStatements(workspaceEdit, document.uri, logStatements);
     });
+    
     context.subscriptions.push(deleteAllLogStatements);
-
-    const switchFile = vscode.commands.registerCommand('extension.switchFile',()=>{
-        if (!vscode.workspace) {
-            return;
-        }
-        const editor = vscode.window.activeTextEditor;
-        if (!editor) { 
-            vscode.window.showInformationMessage('没有可切换的文件！');
-            return; 
-        }
-        // 当前文件
-        const currentFile = editor.document.fileName;
-        const aFile = currentFile.split('\\');
-        aFile.pop();
-        const filePath = aFile.join('\\')
-        // 查找工作区下面的文件
-        const filter = new vscode.RelativePattern(filePath,'*');
-        vscode.workspace.findFiles(filter,'**/node_modules/**', 100)
-        .then(files=>{
-            const showFiles = [];
-            for(let file of files){
-                if(file.fsPath.startsWith(filePath) && file.fsPath != currentFile){
-                    const fs = file.fsPath.split('\\');
-                    showFiles.push({
-                        label:fs[fs.length - 1],
-                        description:file.fsPath
-                    })
-                }
-            }
-            vscode.window.showQuickPick(showFiles)
-            .then(
-                command => showOrOpenFile(command.description).then(re=>{})
-            );
-            //vscode.window.showInformationMessage(files.fsPath)
-        })
-    })
 
     context.subscriptions.push(switchFile);
     
