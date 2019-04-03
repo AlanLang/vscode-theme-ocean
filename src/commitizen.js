@@ -68,7 +68,7 @@ const COMMIT_VALUE = {
 const commitizen = vscode.commands.registerCommand('extension.commitizen', () => {
   vscode.window.showQuickPick(DEFAULT_TYPES, getOption(DEFAULT_MESSAGES.type))
   .then(command => {
-    if(!command) {
+    if(command === undefined) {
       throw null;
     }
     COMMIT_VALUE.type = command.label;
@@ -78,7 +78,7 @@ const commitizen = vscode.commands.registerCommand('extension.commitizen', () =>
     };
     return vscode.window.showInputBox(options)
   }).then(command => {
-    if(!command) {
+    if(command === undefined) {
       throw null;
     }
     COMMIT_VALUE.scope = command;
@@ -95,7 +95,7 @@ const commitizen = vscode.commands.registerCommand('extension.commitizen', () =>
     };
     return vscode.window.showInputBox(options)
   }).then(command => {
-    if(!command) {
+    if(command === undefined) {
       throw null;
     }
     COMMIT_VALUE.subject = command;
@@ -105,7 +105,7 @@ const commitizen = vscode.commands.registerCommand('extension.commitizen', () =>
     };
     return vscode.window.showInputBox(options)
   }).then(command => {
-    if(!command) {
+    if(command === undefined) {
       throw null;
     }
     COMMIT_VALUE.body = command;
@@ -115,7 +115,7 @@ const commitizen = vscode.commands.registerCommand('extension.commitizen', () =>
     };
     return vscode.window.showInputBox(options)
   }).then(command => {
-    if(!command) {
+    if(command === undefined) {
       throw null;
     }
     COMMIT_VALUE.breaking = command;
@@ -126,6 +126,9 @@ const commitizen = vscode.commands.registerCommand('extension.commitizen', () =>
     return vscode.window.showInputBox(options)
 
   }).then(command => {
+    if(command === undefined) {
+      throw null;
+    }
     COMMIT_VALUE.footer = command;
     let message = COMMIT_VALUE.type;
     const cwd = vscode.workspace.workspaceFolders[0].uri.fsPath;
@@ -150,11 +153,19 @@ const commitizen = vscode.commands.registerCommand('extension.commitizen', () =>
       `
     }
 
-    vscode.commands.executeCommand('git.stageAll').then(re => {
-      return execa('git', ['commit', '-m', message], {cwd})
-    })
-    .then(re => {
-      vscode.commands.executeCommand('git.refresh');
+    execa('git', ['diff', '--name-only', '--cached'], {cwd}).then(res => {
+      if(res && res.stdout){
+        execa('git', ['commit', '-m', message], {cwd}).then(re => {
+          vscode.commands.executeCommand('git.refresh');
+        })
+      }else{
+        vscode.commands.executeCommand('git.stageAll').then(re => {
+          return execa('git', ['commit', '-m', message], {cwd})
+        })
+        .then(re => {
+          vscode.commands.executeCommand('git.refresh');
+        })
+      }
     })
   })
 });

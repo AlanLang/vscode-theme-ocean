@@ -1,3 +1,6 @@
+## [0.4.2] 2019-04-03
+修复`commitizen commit` 无法取消提交的bug
+
 ## [0.4.0] 2019-03-27
 加入`commitizen commit` 代码提交功能
 
