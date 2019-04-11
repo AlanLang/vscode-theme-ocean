@@ -3,47 +3,47 @@ const execa = require('execa');
 
 const DEFAULT_TYPES = [
   {
-    label: 'feat',
+    label: '✨feat',
     description: '新增功能'
   },
   {
-    label: 'fix',
+    label: '🐛fix',
     description: '修复bug'
   },
   {
-    label: 'docs',
+    label: '📝docs',
     description: '修改文档'
   },
   {
-    label: 'style',
+    label: '🎨style',
     description: '调整代码格式, 不改变代码逻辑 (空格, 布局, 缩进, 等等...)'
   },
   {
-    label: 'refactor',
+    label: '🔨refactor',
     description: '代码重构，未新增任何功能和修复任何bug'
   },
   {
-    label: 'perf',
+    label: '⚡perf',
     description: '改善性能和体现'
   },
   {
-    label: 'test',
+    label: '✅test',
     description: '增加或修改测试用例'
   },
   {
-    label: 'build',
+    label: '🚧build',
     description: '改变构建流程，新增依赖库、工具等'
   },
   {
-    label: 'ci',
+    label: '👷ci',
     description: '自动化流程配置修改'
   },
   {
-    label: 'chore',
+    label: '🔧chore',
     description: '非src和test的修改'
   },
   {
-    label: 'revert',
+    label: '⏱️revert',
     description: '回滚到上一个版本'
   }
 ];

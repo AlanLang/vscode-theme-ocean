@@ -1,3 +1,6 @@
+## [0.4.3] 2019-04-11
+`commitizen commit` 加入enmoji表情
+
 ## [0.4.2] 2019-04-03
 修复`commitizen commit` 无法取消提交的bug
 
