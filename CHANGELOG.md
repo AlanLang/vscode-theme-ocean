@@ -1,3 +1,6 @@
+## [0.4.4] 2019-04-24
+`commitizen commit` 加入enmoji表情是否显示的开关
+
 ## [0.4.3] 2019-04-11
 `commitizen commit` 加入enmoji表情
 

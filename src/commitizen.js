@@ -1,49 +1,51 @@
 const vscode = require('vscode');
 const execa = require('execa');
+const config = vscode.workspace.getConfiguration('commitizen');
+const hasEmoji = config.get("hasEmoji");
 
 const DEFAULT_TYPES = [
   {
-    label: '✨feat',
+    label: hasEmoji? '✨feat': 'feat',
     description: '新增功能'
   },
   {
-    label: '🐛fix',
+    label: hasEmoji?'🐛fix':'fix',
     description: '修复bug'
   },
   {
-    label: '📝docs',
+    label: hasEmoji?'📝docs':'docs',
     description: '修改文档'
   },
   {
-    label: '🎨style',
+    label: hasEmoji?'🎨style':'style',
     description: '调整代码格式, 不改变代码逻辑 (空格, 布局, 缩进, 等等...)'
   },
   {
-    label: '🔨refactor',
+    label: hasEmoji?'🔨refactor':'refactor',
     description: '代码重构，未新增任何功能和修复任何bug'
   },
   {
-    label: '⚡perf',
+    label: hasEmoji?'⚡perf':'perf',
     description: '改善性能和体现'
   },
   {
-    label: '✅test',
+    label: hasEmoji?'✅test':'test',
     description: '增加或修改测试用例'
   },
   {
-    label: '🚧build',
+    label: hasEmoji?'🚧build':'build',
     description: '改变构建流程，新增依赖库、工具等'
   },
   {
-    label: '👷ci',
+    label: hasEmoji?'👷ci':'ci',
     description: '自动化流程配置修改'
   },
   {
-    label: '🔧chore',
+    label: hasEmoji?'🔧chore':'chore',
     description: '非src和test的修改'
   },
   {
-    label: '⏱️revert',
+    label: hasEmoji?'⏱️revert':'revert',
     description: '回滚到上一个版本'
   }
 ];

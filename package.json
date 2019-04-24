@@ -2,7 +2,7 @@
 	"name": "theme-ocean",
 	"displayName": "Ocean Theme",
 	"description": "🎨 an ocean style theme of vscode",
-	"version": "0.4.3",
+	"version": "0.4.4",
 	"publisher": "alanlang",
 	"license": "MIT",
 	"homepage": "https://github.com/AlanLang/vscode-theme-ocean",
@@ -73,6 +73,17 @@
 				"mac": "shift+cmd+w"
 			}
 		]
+	},
+	"configuration":{
+		"type": "object",
+		"title": "ocean theme configuration",
+		"proerties": {
+			"commitizen.hasEmoji": {
+				"type": "boolean",
+				"default": false,
+				"description": "has enmoji in commit message"
+			}
+		}
 	},
 	"__metadata": {
 		"id": "6cd30b49-437a-4779-92d1-126c305a9b0f",
