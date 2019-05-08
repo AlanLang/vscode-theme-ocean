@@ -1,3 +1,6 @@
+## [0.4.4] 2019-05-08
+`switch file` 解决切换的文件无法打开的bug
+
 ## [0.4.4] 2019-04-24
 `commitizen commit` 加入enmoji表情是否显示的开关
 
