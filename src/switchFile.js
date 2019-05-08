@@ -1,6 +1,49 @@
 const vscode = require('vscode');
 const window = vscode.window;
 let statusBarItem = null;
+function showOrOpenFile(path){
+  let opened = false;
+  return new Promise((resolve, reject) => {
+      let opened = false;
+      // vscode.workspace.textDocuments.forEach((doc) => {
+      // });
+  
+      // try to find opened document.
+      vscode.window.visibleTextEditors.forEach(textEditor => {
+        if (textEditor.document.fileName === path) {
+          opened = true;
+          vscode.window
+            .showTextDocument(textEditor.document, textEditor.viewColumn)
+            .then(
+              () => {
+                resolve(textEditor.document);
+              },
+              err => {
+                reject(err);
+              }
+            );
+        }
+      });
+  
+      if (!opened) {
+        vscode.workspace.openTextDocument(path).then(
+          doc => {
+            vscode.window.showTextDocument(doc, vscode.ViewColumn).then(
+              () => {
+                resolve(doc);
+              },
+              err => {
+                reject(err);
+              }
+            );
+          },
+          err => {
+            reject(err);
+          }
+        );
+      }
+    });
+}
 
 const switchFile = vscode.commands.registerCommand('extension.switchFile',()=>{
   if (!vscode.workspace) {
