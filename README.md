@@ -19,6 +19,7 @@ GitHub: https://github.com/AlanLang/vscode-theme-ocean
 * `shift+ctrl+w`: 快速切换当前文件夹里面的其他文件
 * `list todo`: 快速列出标有`TODO:`的代码行
 * `commitizen commit`: 以`commitizen`的格式提交代码，通过配置`commitizen.hasEmoji`设置是否显示emoji
+* `commitizen.simple`: 是否已简易的方式提交git信息
 
 ## 效果展示
 

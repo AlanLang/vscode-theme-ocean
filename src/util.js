@@ -8,7 +8,7 @@ const defaultMsg = '0';
 
 function searchAnnotations(workspaceState){
   const statusMsg = ` Searching...`;
-  const pattern = 'TODO:';
+  const pattern = 'TODO';
   window.processing = true;
 
   const includePattern = '{' + [

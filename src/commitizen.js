@@ -2,6 +2,7 @@ const vscode = require('vscode');
 const execa = require('execa');
 const config = vscode.workspace.getConfiguration('commitizen');
 const hasEmoji = config.get("hasEmoji");
+const isSimple = config.get("simple");
 
 const DEFAULT_TYPES = [
   {
@@ -68,6 +69,75 @@ const COMMIT_VALUE = {
   footer: ''
 };
 const commitizen = vscode.commands.registerCommand('extension.commitizen', () => {
+  isSimple ? showSimplePick() : showDefalutPick();
+});
+
+function showSimplePick(){
+  vscode.window.showQuickPick(DEFAULT_TYPES, getOption(DEFAULT_MESSAGES.type))
+  .then(command => {
+    if(command === undefined) {
+      throw null;
+    }
+    COMMIT_VALUE.scope = command;
+    const options = {
+      placeHolder: DEFAULT_MESSAGES.subject,
+      ignoreFocusOut: true,
+      validateInput : input => {
+        const maxLenght = 50;
+        if (input.length === 0 || input.length > maxLenght) {
+          return `提交内容为必填且必须小于50个字符`;
+        }
+        return '';
+      }
+    };
+    return vscode.window.showInputBox(options)
+  }).then(command => {
+    if(command === undefined) {
+      throw null;
+    }
+    COMMIT_VALUE.footer = command;
+    let message = COMMIT_VALUE.type;
+    const cwd = vscode.workspace.workspaceFolders[0].uri.fsPath;
+
+    if(COMMIT_VALUE.scope){
+      message += `(${COMMIT_VALUE.scope})`
+    }
+    message += `: ${COMMIT_VALUE.subject}`
+    if(COMMIT_VALUE.body){
+      message += `
+      ${COMMIT_VALUE.body}
+      `
+    }
+    if(COMMIT_VALUE.breaking){
+      message += `
+      BREAKING CHANGE: ${COMMIT_VALUE.breaking}
+      `
+    }
+    if(COMMIT_VALUE.footer){
+      message += `
+      Closes: ${COMMIT_VALUE.footer}
+      `
+    }
+
+    execa('git', ['diff', '--name-only', '--cached'], {cwd}).then(res => {
+      if(res && res.stdout){
+        execa('git', ['commit', '-m', message], {cwd}).then(re => {
+          vscode.commands.executeCommand('git.refresh');
+        })
+      }else{
+        vscode.commands.executeCommand('git.stageAll').then(re => {
+          return execa('git', ['commit', '-m', message], {cwd})
+        })
+        .then(re => {
+          vscode.commands.executeCommand('git.refresh');
+        })
+      }
+    })
+  })
+}
+
+
+function showDefalutPick(){
   vscode.window.showQuickPick(DEFAULT_TYPES, getOption(DEFAULT_MESSAGES.type))
   .then(command => {
     if(command === undefined) {
@@ -170,7 +240,7 @@ const commitizen = vscode.commands.registerCommand('extension.commitizen', () =>
       }
     })
   })
-});
+}
 
 function getOption(msg){
   return {
