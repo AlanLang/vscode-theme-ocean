@@ -95,7 +95,7 @@ function showSimplePick(){
     if(command === undefined) {
       throw null;
     }
-    COMMIT_VALUE.footer = command;
+    COMMIT_VALUE.type = command.label;
     let message = COMMIT_VALUE.type;
     const cwd = vscode.workspace.workspaceFolders[0].uri.fsPath;
 

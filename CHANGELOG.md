@@ -1,3 +1,6 @@
+## [0.4.7] 2019-10-11
+`commitizen.simple`: 修复简易模式提交git的bug
+
 ## [0.4.6] 2019-10-10
 `commitizen.simple`: 是否已简易的方式提交git信息
 
