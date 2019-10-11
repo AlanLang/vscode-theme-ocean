@@ -78,7 +78,7 @@ function showSimplePick(){
     if(command === undefined) {
       throw null;
     }
-    COMMIT_VALUE.scope = command;
+    COMMIT_VALUE.type = command.label;
     const options = {
       placeHolder: DEFAULT_MESSAGES.subject,
       ignoreFocusOut: true,
@@ -95,7 +95,7 @@ function showSimplePick(){
     if(command === undefined) {
       throw null;
     }
-    COMMIT_VALUE.type = command.label;
+    COMMIT_VALUE.subject = command;
     let message = COMMIT_VALUE.type;
     const cwd = vscode.workspace.workspaceFolders[0].uri.fsPath;
 
@@ -118,7 +118,6 @@ function showSimplePick(){
       Closes: ${COMMIT_VALUE.footer}
       `
     }
-
     execa('git', ['diff', '--name-only', '--cached'], {cwd}).then(res => {
       if(res && res.stdout){
         execa('git', ['commit', '-m', message], {cwd}).then(re => {
