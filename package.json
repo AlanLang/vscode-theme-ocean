@@ -2,7 +2,7 @@
 	"name": "theme-ocean",
 	"displayName": "Ocean Theme",
 	"description": "🎨 an ocean style theme of vscode",
-	"version": "0.4.7",
+	"version": "0.4.8",
 	"publisher": "alanlang",
 	"license": "MIT",
 	"homepage": "https://github.com/AlanLang/vscode-theme-ocean",
@@ -74,7 +74,7 @@
 			}
 		]
 	},
-	"configuration":{
+	"configuration": {
 		"type": "object",
 		"title": "ocean theme configuration",
 		"proerties": {
@@ -95,6 +95,7 @@
 		"publisherDisplayName": "Alan"
 	},
 	"dependencies": {
-		"execa": "^1.0.0"
+		"execa": "^1.0.0",
+		"vsce": "^1.91.0"
 	}
 }

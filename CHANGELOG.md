@@ -1,3 +1,6 @@
+## [0.4.8] 2021-06-03
+`commitizen.simple`: 增加输入任务编号的功能
+
 ## [0.4.7] 2019-10-11
 `commitizen.simple`: 修复简易模式提交git的bug
 

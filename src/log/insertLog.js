@@ -13,7 +13,7 @@ const insertText = (val) => {
   const range = new vscode.Range(selection.start, selection.end);
 
   editor.edit((editBuilder) => {
-      editBuilder.replace(range, val);
+      editBuilder.insert(selection.start, val)
   });
 }
 

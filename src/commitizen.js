@@ -52,6 +52,7 @@ const DEFAULT_TYPES = [
 ];
 
 const DEFAULT_MESSAGES = {
+  code : '请输入任务编号',
   type: '请选择提交的类型',
   scope: '说明commit的影响范围 [可空]',
   subject: '请简短清晰得描述本次提交的内容',
@@ -61,6 +62,7 @@ const DEFAULT_MESSAGES = {
 };
 
 const COMMIT_VALUE = {
+  code: '',
   type: '',
   scope: '',
   subject: '',
@@ -73,8 +75,13 @@ const commitizen = vscode.commands.registerCommand('extension.commitizen', () =>
 });
 
 function showSimplePick(){
-  vscode.window.showQuickPick(DEFAULT_TYPES, getOption(DEFAULT_MESSAGES.type))
-  .then(command => {
+  vscode.window.showInputBox({
+    placeHolder: DEFAULT_MESSAGES.code,
+    ignoreFocusOut: true
+  }).then(command => {
+    COMMIT_VALUE.code = command;
+    return vscode.window.showQuickPick(DEFAULT_TYPES, getOption(DEFAULT_MESSAGES.type));
+  }).then(command => {
     if(command === undefined) {
       throw null;
     }
@@ -92,17 +99,19 @@ function showSimplePick(){
     };
     return vscode.window.showInputBox(options)
   }).then(command => {
-    if(command === undefined) {
-      throw null;
-    }
     COMMIT_VALUE.subject = command;
-    let message = COMMIT_VALUE.type;
+    let message = "";
     const cwd = vscode.workspace.workspaceFolders[0].uri.fsPath;
 
-    if(COMMIT_VALUE.scope){
-      message += `(${COMMIT_VALUE.scope})`
+    if(COMMIT_VALUE.code){
+      message += `${COMMIT_VALUE.code} `
     }
-    message += `: ${COMMIT_VALUE.subject}`
+    message += `${COMMIT_VALUE.type}:`;
+
+    if(COMMIT_VALUE.scope){
+      message += `(${COMMIT_VALUE.scope}) `
+    }
+    message += `${COMMIT_VALUE.subject}`
     if(COMMIT_VALUE.body){
       message += `
       ${COMMIT_VALUE.body}
