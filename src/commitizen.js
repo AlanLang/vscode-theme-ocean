@@ -79,6 +79,9 @@ function showSimplePick(){
     placeHolder: DEFAULT_MESSAGES.code,
     ignoreFocusOut: true
   }).then(command => {
+    if(command === undefined) {
+      throw null;
+    }
     COMMIT_VALUE.code = command;
     return vscode.window.showQuickPick(DEFAULT_TYPES, getOption(DEFAULT_MESSAGES.type));
   }).then(command => {
