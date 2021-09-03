@@ -4,9 +4,11 @@
 		"widget.shadow": "#42525a",
 		"editor.background": "#343d46",//编辑区域背景色
 		"editor.foreground": "#cdd3de",
-		"editor.selectionBackground": "#ffffff16",
+		"editor.selectionBackground": "#B3D7FE50",
+		"editor.selectionHighlightBackground":"#B3D7FE15",
 		"editor.lineHighlightBackground": "#ffffff10",
-		"editorCursor.foreground": "#cdd3de",
+		"editor.wordHighlightBackground": "#ffffff10",
+		"editorCursor.foreground": "#cdd3de",// 光标的颜色
 		"editorWhitespace.foreground": "#65737e",
 		"editorIndentGuide.background": "#ffffff25",
 		"statusBar.background": "#42525a",
